@@ -1,0 +1,112 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cinema Admin Dashboard — Modern Template</title>
+    <link rel="stylesheet" href="~/css/Admin/styl.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Include Tom Select CSS & JS -->
+    <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
+
+</head>
+<body class="h-screen antialiased text-slate-200 bg-slate-900">
+    <div class="min-h-screen flex">
+
+        <!-- SIDEBAR -->
+        <aside class="w-72 sidebar-bg p-6 hidden md:block">
+            <div class="flex items-center gap-3 mb-8">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500 to-pink-500 flex items-center justify-center text-white font-bold">CA</div>
+                <div>
+                    <div class="text-lg font-semibold">Cinema Control</div>
+                    <div class="text-xs text-slate-300">Control Panel</div>
+                </div>
+            </div>
+            <nav class="space-y-1">
+                <a href="/Admin" class="flex items-center gap-3 p-2 rounded-md hover:bg-white/5">🏠 Dashboard</a>
+                <a href="/Admin/Movie" class="flex items-center gap-3 p-2 rounded-md hover:bg-white/5">🎬 Movies</a>
+                <a href="/Admin/Actor" class="flex items-center gap-3 p-2 rounded-md hover:bg-white/5">👥 Actors</a>
+                <a href="/Admin/Category" class="flex items-center gap-3 p-2 rounded-md hover:bg-white/5">🎬 Categories</a>
+                <a href="/Admin/Cinema" class="flex items-center gap-3 p-2 rounded-md hover:bg-white/5">🏢 Cinemas</a>
+                <a href="#halls" class="flex items-center gap-3 p-2 rounded-md hover:bg-white/5">🎟️ Halls</a>
+                <a href="#bookings" class="flex items-center gap-3 p-2 rounded-md hover:bg-white/5">🧾 Bookings</a>
+                <a href="#reports" class="flex items-center gap-3 p-2 rounded-md hover:bg-white/5">📊 Reports</a>
+                <a href="#users" class="flex items-center gap-3 p-2 rounded-md hover:bg-white/5">👥 Users</a>
+                <a href="/" class="flex items-center gap-3 p-2 rounded-md hover:bg-white/5">Website</a>
+            </nav>
+            <div class="mt-8">
+                <div class="text-xs uppercase text-slate-400 mb-2">Shortcuts</div>
+                <div class="flex gap-2">
+                    <button class="flex-1 py-2 px-3 rounded-md bg-indigo-600 text-white text-sm">Add Movie</button>
+                    <button class="py-2 px-3 rounded-md glass text-sm">Import</button>
+                </div>
+            </div>
+            <div class="mt-auto text-xs text-slate-400 mt-10">© <span id="year"></span> Cinema Control</div>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="flex-1 p-6 overflow-auto scrollbar-thin">
+            <!-- Topbar -->
+            <header class="flex items-center justify-between mb-6">
+                <div class="flex items-center gap-4">
+                    <button id="mobileMenuBtn" class="md:hidden p-2 bg-white/5 rounded-md">☰</button>
+                    <h1 class="text-2xl font-semibold">Dashboard</h1>
+                    <span class="text-sm text-slate-400">Welcome back, Admin</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <input placeholder="Search movies, bookings..." class="px-3 py-2 rounded-md bg-white/5 placeholder:text-slate-400 text-sm" />
+                    <button class="p-2 glass rounded-md">🔔</button>
+                    <div class="flex items-center gap-2 p-2 rounded-md glass">
+                        <div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center">A</div>
+                        <div class="text-sm">
+                            <div class="font-medium">Ahmed</div>
+                            <div class="text-xs text-slate-400">Admin</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            @RenderBody()
+
+            <footer class="text-xs text-slate-500 mt-6">Designed with ❤️ for cinema teams — customize to your backend.
+
+            </footer>
+        </main>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobileDrawer" class="fixed inset-0 z-40 md:hidden hidden">
+        <div class="absolute inset-0 bg-black/50" onclick="toggleMobile()"></div>
+        <div class="absolute left-0 top-0 bottom-0 w-72 p-6 sidebar-bg">
+            <nav class="space-y-1">
+                <a href="#" class="block p-2 rounded-md hover:bg-white/5">Dashboard</a>
+                <a href="#movies" class="block p-2 rounded-md hover:bg-white/5">Movies</a>
+            </nav>
+        </div>
+    </div>
+
+    <script src="~/js/styl .js"></script>
+    <script>
+        new TomSelect("#actors-select",{
+            plugins: ['remove_button'],
+            render: {
+              option: function(data, escape) {
+                return `<div class="flex items-center gap-2">
+                          <img src="${data.image}" class="w-6 h-6 rounded-full object-cover">
+                          <span>${escape(data.text)}</span>
+                        </div>`;
+              },
+              item: function(data, escape) {
+                return `<div class="flex items-center gap-2 px-2 py-1 rounded-full bg-gray-700 text-white">
+                          <img src="${data.image}" class="w-5 h-5 rounded-full object-cover">
+                          <span>${escape(data.text)}</span>
+                        </div>`;
+              }
+            }
+        });
+    </script>
+</body>
+</html>

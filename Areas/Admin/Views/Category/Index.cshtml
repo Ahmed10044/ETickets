@@ -1,0 +1,40 @@
+﻿@model List<Category>
+
+
+<!<!-- Category Table -->
+<section id="Categories" class="p-4 rounded-2xl glass mb-6">
+    <div class="flex items-center justify-between mb-4">
+        <div class="font-semibold">Categories</div>
+        <div class="flex items-center gap-2">
+            <a href="/Admin/Category/Create" class="py-1 px-3 rounded-md bg-indigo-600 text-sm">Add Category</a>
+            <button class="py-1 px-3 rounded-md glass text-sm">Export</button>
+        </div>
+    </div>
+
+    <div class="overflow-auto">
+        <table class="min-w-full text-left text-sm table-zebra">
+            <thead class="text-slate-300 text-xs uppercase">
+                <tr>
+                    <th class="p-3">ID</th>
+                    <th class="p-3">Category Name</th>
+                    <th class="p-3">Actions</th>
+                </tr>
+            </thead>
+        @foreach(var item in Model)
+        {
+            <tbody>
+                <tr class="align-top">
+                    <td class="p-3">@item.Id</td>
+                    <td class="p-3 font-medium">@item.Name</td>
+                    <td class="p-3 flex gap-2">
+                        <a href="/Admin/category/Edit/@item.Id" class="py-1 px-2 rounded-md glass bg-blue-600/30 text-blue-300">Edit</a>
+                            <a href="/Admin/category/Delete/@item.Id" class="py-1 px-2 rounded-md glass bg-red-600/30 text-red-300">Delete</a>
+                    </td>
+                </tr>
+                
+            </tbody>
+        }
+        </table>
+            
+    </div>
+</section>

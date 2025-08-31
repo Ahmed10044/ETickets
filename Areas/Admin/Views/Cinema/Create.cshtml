@@ -1,0 +1,60 @@
+﻿<div class="max-w-lg mx-auto bg-gray-800 shadow-lg rounded-2xl p-6 text-gray-100">
+    <h3 class="text-2xl font-bold text-center text-indigo-400 mb-6">Create New Cinema</h3>
+
+    <form method="post" class="space-y-4">
+
+        <!-- Cinema Name -->
+        <div>
+            <label for="Name" class="block text-sm font-medium mb-1">Cinema Name</label>
+            <input type="text" id="Name"  required
+                   placeholder="Enter cinema name"
+                   class="w-full rounded-xl bg-gray-700 border border-gray-600
+                          focus:border-indigo-500 focus:ring-indigo-500 text-sm p-2
+                          text-gray-100 placeholder-gray-400"
+                          name="Name" />
+        </div>
+
+        <!-- Description -->
+        <div>
+            <label for="Description" class="block text-sm font-medium mb-1">Description</label>
+            <textarea id="Description"  rows="3" required
+                      placeholder="Enter cinema description"
+                      class="w-full rounded-xl bg-gray-700 border border-gray-600
+                             focus:border-indigo-500 focus:ring-indigo-500 text-sm p-2
+                             text-gray-100 placeholder-gray-400"
+                              name="Description">
+            </textarea>
+        </div>
+
+        <!-- Cinema Logo -->
+        <div>
+            <label for="CinemaLogo" class="block text-sm font-medium mb-1">Cinema Logo</label>
+            <input type="text" id="CinemaLogo" 
+                   placeholder="Enter cinema logo URL"
+                   class="w-full rounded-xl bg-gray-700 border border-gray-600
+                          focus:border-indigo-500 focus:ring-indigo-500 text-sm p-2
+                          text-gray-100 placeholder-gray-400" 
+                          name="CinemaLogo" />
+        </div>
+
+        <!-- Address -->
+        <div>
+            <label for="Address" class="block text-sm font-medium mb-1">Address</label>
+            <input type="text" id="Address" 
+                   placeholder="Enter cinema address"
+                   class="w-full rounded-xl bg-gray-700 border border-gray-600
+                          focus:border-indigo-500 focus:ring-indigo-500 text-sm p-2
+                          text-gray-100 placeholder-gray-400" name="Address" />
+        </div>
+
+        <!-- Submit -->
+        <div>
+            <button type="submit"
+                    class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold
+                           rounded-xl p-2 transition">
+                Create Cinema
+            </button>
+        </div>
+
+    </form>
+</div>

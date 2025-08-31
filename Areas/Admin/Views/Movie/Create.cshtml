@@ -1,0 +1,120 @@
+﻿<!-- Movie Form -->
+<section id="movie-form" class="p-6 rounded-2xl bg-gray-900/70 shadow-xl max-w-3xl mx-auto">
+    <!-- Header -->
+    <div class="mb-6">
+        <h2 class="font-semibold text-xl text-white">🎬 Add Movie</h2>
+    </div>
+
+    <!-- Form -->
+    <form class="space-y-5">
+        <!-- Title -->
+        <div>
+            <label class="block text-sm text-gray-300 mb-1">Title</label>
+            <input type="text" placeholder="Enter movie title"
+                   class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" />
+        </div>
+
+        <!-- Description -->
+        <div>
+            <label class="block text-sm text-gray-300 mb-1">Description</label>
+            <textarea rows="3" placeholder="Enter description"
+                      class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50"></textarea>
+        </div>
+
+        <!-- Price -->
+        <div>
+            <label class="block text-sm text-gray-300 mb-1">Price</label>
+            <input type="number" placeholder="Enter price"
+                   class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" />
+        </div>
+
+        <!-- Poster Upload -->
+        <div>
+            <label class="block text-sm text-gray-300 mb-1">Poster</label>
+            <input type="file"
+                   class="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4
+                       file:rounded-lg file:border-0
+                       file:text-sm file:font-semibold
+                       file:bg-indigo-600 file:text-white
+                       hover:file:bg-indigo-700" />
+        </div>
+
+        
+        <!-- Actors Select -->
+
+        <div>
+            <label class="block text-sm  text-gray-300 mb-1">Actors</label>
+            <select id="actors-select" class="bg-black" multiple placeholder="Choose actors...">
+                <option value="1" data-data='{"image":"/images/cast/actor1.jpg"}'>Estel</option>
+                <option value="2" data-data='{"image":"/images/cast/actor2.jpg"}'>Scarlett</option>
+                <option value="3" data-data='{"image":"/images/cast/actor3.jpg"}'>Chris</option>
+                <option value="4" data-data='{"image":"/images/cast/actor4.jpg"}'>Tom</option>
+            </select>
+        </div>
+
+
+        <!-- Dates -->
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <label class="block text-sm text-gray-300 mb-1">Start Date</label>
+                <input type="date"
+                       class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" />
+            </div>
+            <div>
+                <label class="block text-sm text-gray-300 mb-1">End Date</label>
+                <input type="date"
+                       class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" />
+            </div>
+        </div>
+
+        <!-- Status -->
+        <div>
+            <label class="block text-sm text-gray-300 mb-1">Status</label>
+            <select class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50">
+                <option>Available</option>
+                <option>Expired</option>
+                <option>Upcoming</option>
+            </select>
+        </div>
+
+        <!-- Category -->
+        <div>
+            <label class="block text-sm text-gray-300 mb-1">Category</label>
+            <select class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50">
+                <option>Select Category</option>
+                <option>Action</option>
+                <option>Drama</option>
+                <option>Comedy</option>
+            </select>
+        </div>
+
+        <!-- Cinema -->
+        <div>
+            <label class="block text-sm text-gray-300 mb-1">Cinema</label>
+            <select class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50">
+                <option>Select Cinema</option>
+                <option>Cinema One</option>
+                <option>Cinema Two</option>
+            </select>
+        </div>
+
+        <!-- Trailer -->
+        <div>
+            <label class="block text-sm text-gray-300 mb-1">Trailer URL</label>
+            <input type="url" placeholder="https://youtube.com/..."
+                   class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" />
+        </div>
+
+        <!-- Submit -->
+        <div class="flex justify-end gap-3">
+            <button type="reset"
+                    class="px-4 py-2 rounded-lg bg-gray-600 text-white hover:bg-gray-500 transition">
+                Cancel
+            </button>
+            <button type="submit"
+                    class="px-4 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition">
+                Save Movie
+            </button>
+        </div>
+    </form>
+</section>

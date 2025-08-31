@@ -1,0 +1,84 @@
+﻿
+@model List<Actor>
+
+
+<!-- Actors Table -->
+<section id="actors" class="p-6 rounded-2xl bg-gray-900/60 shadow-xl mb-6">
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-6">
+        <h2 class="font-semibold text-xl text-white">🎬 actors</h2>
+        <div class="flex items-center gap-3">
+            <a href="/admin/actor/create" class="py-1.5 px-4 rounded-lg bg-indigo-600 text-sm text-white hover:bg-indigo-700 transition">
+                + Add actor
+            </a>
+            <button class="py-1.5 px-4 rounded-lg bg-gray-700 text-sm text-white hover:bg-gray-600 transition">
+                ⬇ Export
+            </button>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <div class="overflow-x-auto rounded-xl border border-gray-700/50">
+        <table class="min-w-full text-middle text-sm text-gray-300">
+            <thead class="text-xs uppercase bg-gray-800/80 text-slate-300 sticky top-0">
+                <tr>
+                    <th class="p-3">ID</th>
+                    <th class="p-3">Profile_Picture</th>
+                    <th class="p-3">First_Name</th>
+                    <th class="p-3">Last_Name</th>
+                    <th class="p-3">Bio</th>
+                    <th class="p-3">News</th>
+                    <th class="p-3">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="align-top border-b border-gray-700 hover:bg-gray-800/60 transition">
+
+                        <!-- Id -->
+                        <td class="p-3 font-medium text-white">@item.Id</td>
+
+                        <!-- Actors ProfilePicture -->
+                        <td class="p-3">
+                            <div class="flex flex-wrap gap-1">
+                                
+                                    <span class="inline-flex items-center gap-1 bg-gray-700 text-white text-xs px-2 py-1 rounded-full">
+                                        <img src="~/images/cast/@item.ProfilePicture" class="w-5 h-5 rounded-full object-cover" />
+                                    </span>
+                                
+                            </div>
+                        </td>
+                        <!-- FirstName -->
+                        <td class="p-3 font-medium text-white">@item.FirstName</td>
+                        <!-- LasttName -->
+                        <td class="p-3 font-medium text-white">@item.LastName</td>
+
+                        <!-- Bio -->
+                        <td class="p-3 max-w-xs truncate text-slate-400" title="@item.Bio">
+                            @item.Bio
+                        </td>
+
+
+                        
+
+                        <!-- News -->
+                        <td class="p-3 max-w-xs truncate text-slate-400" title="@item.Bio">
+                            @item.News
+                        </td>
+
+                        <!-- Actions -->
+                        <td class="p-3 flex gap-2">
+                            <button class="py-1 px-3 rounded-lg bg-yellow-500/80 hover:bg-yellow-500 text-white text-xs shadow">
+                                ✏ Edit
+                            </button>
+                            <button class="py-1 px-3 rounded-lg bg-red-600/80 hover:bg-red-600 text-white text-xs shadow">
+                                🗑 Delete
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>

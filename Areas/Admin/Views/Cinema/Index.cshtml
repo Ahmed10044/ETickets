@@ -1,0 +1,54 @@
+﻿
+@model List<Cinema>
+
+<!-- Cinema Table -->
+<section id="Cinemas" class="p-4 rounded-2xl glass mb-6">
+    <div class="flex items-center justify-between mb-4">
+        <div class="font-semibold">Cinemas</div>
+        <div class="flex items-center gap-2">
+            <a href="/Admin/Cinema/Create" class="py-1 px-3 rounded-md bg-indigo-600 text-sm">Add Cinema</a>
+            <button class="py-1 px-3 rounded-md glass text-sm">Export</button>
+        </div>
+    </div>
+
+    <div class="overflow-auto">
+        <table class="min-w-full text-left text-sm table-zebra">
+            <thead class="text-slate-300 text-xs uppercase">
+                <tr>
+                    <th class="p-3">Id</th>
+                    <th class="p-3">CinemaName</th>
+                    <th class="p-3">Description</th>
+                    <th class="p-3">CinemaLogo</th>
+                    <th class="p-3">Address</th>
+                    <th class="p-3">Actions</th>
+                </tr>
+            </thead>
+            @foreach(var item in Model)
+            {
+                <tbody>
+                    <tr class="align-top">
+                        <td class="p-3">@item.Id</td>
+                        <td class="p-3 font-medium">@item.Name</td>
+                        @if (item.Description.Length > 50 && item.Description is not null)
+                        {
+                            <td class="p-3 font-medium">@item.Description.Substring(1,50)</td>
+                        }
+                        else
+                        {
+                            <td class="p-3 font-medium">@item.Description</td>
+
+                        }
+                        <td class="p-3 font-medium">@item.CinemaLogo</td>
+                    <td class="p-3 font-medium">@item.Address</td>
+                    <td class="p-3 flex gap-2">
+                        <a href="/Admin/Cinema/Edit/@item.Id" class="py-1 px-2 rounded-md glass bg-blue-600/30 text-blue-300">Edit</a>
+                        <a href="/Admin/Cinema/Delete/@item.Id" class="py-1 px-2 rounded-md glass bg-red-600/30 text-red-300">Delete</a>
+                    </td>
+                </tr>
+                    
+                </tbody>
+                }
+
+        </table>
+    </div>
+</section>

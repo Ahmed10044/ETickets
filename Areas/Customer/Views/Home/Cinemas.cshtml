@@ -1,0 +1,29 @@
+﻿@model List<Cinema>
+
+
+<div class="container py-5">
+    <h1 class="mb-4 text-center">Our Cinemas</h1>
+
+    <div class="row">
+        <!-- Example Cinema Card -->
+        @foreach(var item in Model)
+        {
+            <div class="col-md-6 mb-4">
+                <div class="card shadow-sm border-0 p-3">
+                    <h3 class="mb-2">
+                        <a href="/customer/home/?CinemaId=@item.Id" class="cinema-link fw-bold">
+                            @item.Name
+                        </a>
+                    </h3>
+                    <p class="text-muted">@item.Description</p>
+                </div>
+            </div>
+
+        }
+        
+
+        
+
+        <!-- Add more cinemas here -->
+    </div>
+</div>}
