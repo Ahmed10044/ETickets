@@ -1,11 +1,11 @@
-﻿
-@model List<Actor>
+﻿@model Actor 
+
 
 <!-- Actor Form -->
 <section id="actor-form" class="p-6 rounded-2xl bg-gray-900/70 shadow-xl max-w-2xl mx-auto">
     <!-- Header -->
     <div class="mb-6">
-        <h2 class="font-semibold text-xl text-white">🎭 Add Actor</h2>
+        <h2 class="font-semibold text-xl text-white">🎭Edit Actor</h2>
     </div>
 
     <!-- Form -->
@@ -15,7 +15,7 @@
             <label class="block text-sm text-gray-300 mb-1">First Name</label>
             <input type="text" placeholder="Enter first name"
                    class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700
-                       focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="FirstName" />
+                       focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="FirstName" value="@Model.FirstName" />
         </div>
 
         <!-- Last Name -->
@@ -23,34 +23,34 @@
             <label class="block text-sm text-gray-300 mb-1">Last Name</label>
             <input type="text" placeholder="Enter last name"
                    class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700
-                       focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="LastName" />
+                       focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="LastName" value="@Model.LastName" />
         </div>
 
         <!-- Profile Picture Upload -->
         <div>
             <label class="block text-sm text-gray-300 mb-1">Profile Picture</label>
-            <input type="text"
+            <input type="file"
                    class="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4
                        file:rounded-lg file:border-0
                        file:text-sm file:font-semibold
                        file:bg-indigo-600 file:text-white
-                       hover:file:bg-indigo-700" name="ProfilePicture" />
+                       hover:file:bg-indigo-700" name="ProfilePicture" value="@Model.ProfilePicture" />
         </div>
 
         <!-- Bio -->
         <div>
             <label class="block text-sm text-gray-300 mb-1">Bio</label>
-            <textarea rows="3" placeholder="Enter short biography"
+            <input rows="3" placeholder="Enter short biography"
                       class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700
-                       focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="Bio"></textarea>
+                       focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="Bio" value="@Model.Bio">
         </div>
 
         <!-- News -->
         <div>
             <label class="block text-sm text-gray-300 mb-1">News</label>
-            <textarea rows="2" placeholder="Enter latest news"
+            <input rows="2" placeholder="Enter latest news"
                       class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700
-                       focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="News"></textarea>
+                       focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="News" value="@Model.News">
         </div>
 
         <!-- Buttons -->

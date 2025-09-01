@@ -1,4 +1,5 @@
 ﻿using ETickets.DataAccess;
+using ETickets.Models;
 using ETickets.Utility;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,11 +15,51 @@ namespace ETickets.Areas.Admin.Controllers
             var Actors=_context.Actors;
             return View(Actors.ToList());
         }
+        [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            var Actors=_context.Actors;
+            return View(Actors.ToList());
         }
+        [HttpPost]
+        public IActionResult Create(Actor actor)
+        {
+            _context.Actors.Add(actor);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var actor = _context.Actors.FirstOrDefault(x => x.Id == id);
+            if (actor == null)
+            {
+                return NotFound();
+            }
+            return View(actor);
+        }
+        [HttpPost]
+        public IActionResult Edit(Actor actor)
+        {
+            _context.Actors.Update(actor);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var Actor=_context.Actors.FirstOrDefault(e => e.Id == id);
+            if(Actor == null)
+            {
+                return NotFound();
+            }
+            _context.Actors.Remove(Actor);
+            _context .SaveChanges();    
+            return RedirectToAction(nameof(Index));
+        }
+
+
     }
 
-    
+
 }

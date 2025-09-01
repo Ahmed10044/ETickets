@@ -1,4 +1,5 @@
 ﻿using ETickets.DataAccess;
+using ETickets.Models;
 using ETickets.Utility;
 using ETickets.ViewModel;
 using Microsoft.AspNetCore.Mvc;
@@ -24,10 +25,38 @@ namespace ETickets.Areas.Admin.Controllers
 
             return View(Movie);
         }
-
+        [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            var Categories = _context.Categories;
+            var Cinemas = _context.Cinemas;
+            var Actors = _context.Actors;
+
+            var Movie = new CategoryAndCineamAndActorVM()
+            {
+                Cinemas = Cinemas.ToList(),
+                Categories = Categories.ToList(),
+                Actors = Actors.ToList(),
+            };
+            return View(Movie);
+        }
+        [HttpPost]
+        public IActionResult Create(Movie movie,List<int> actorIds)
+        {
+            _context.Movies.Add(movie);
+            _context.SaveChanges();
+            foreach (var item in actorIds)
+            {
+               
+               _context.ActorMovies.Add(new ActorMovie
+                {
+                  MovieId = movie.Id,
+                  ActorId= item,
+                 });
+            _context.SaveChanges();
+
+            }
+            return RedirectToAction(nameof(Index));
         }
     }
 }
