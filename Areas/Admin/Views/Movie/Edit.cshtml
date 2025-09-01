@@ -1,12 +1,12 @@
 ﻿@using ETickets.ViewModel
-@model CategoryAndCineamAndActorVM
+@model MovieAndMovieActorsVM
 
 
 <!-- Movie Form -->
 <section id="movie-form" method="post" class="p-6 rounded-2xl bg-gray-900/70 shadow-xl max-w-3xl mx-auto">
     <!-- Header -->
     <div class="mb-6">
-        <h2 class="font-semibold text-xl text-white">🎬 Add Movie</h2>
+        <h2 class="font-semibold text-xl text-white">🎬 Edit Movie</h2>
     </div>
 
     <!-- Form -->
@@ -15,21 +15,21 @@
         <div>
             <label class="block text-sm text-gray-300 mb-1">Title</label>
             <input type="text" placeholder="Enter movie title"
-                   class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="Name" />
+                   class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="Name" value="@Model.Movie.Name" />
         </div>
 
         <!-- Description -->
         <div>
             <label class="block text-sm text-gray-300 mb-1">Description</label>
-            <textarea rows="3" placeholder="Enter description"
-                      class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="Description"></textarea>
+            <input rows="3" placeholder="Enter description"
+                   class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="Description" value="@Model.Movie.Description">
         </div>
 
         <!-- Price -->
         <div>
             <label class="block text-sm text-gray-300 mb-1">Price</label>
             <input type="number" placeholder="Enter price"
-                   class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="Price"/>
+                   class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="Price" value="@Model.Movie.Price" />
         </div>
 
         <!-- Poster Upload -->
@@ -40,20 +40,30 @@
                        file:rounded-lg file:border-0
                        file:text-sm file:font-semibold
                        file:bg-indigo-600 file:text-white
-                       hover:file:bg-indigo-700" name="ImgUrl" />
+                       hover:file:bg-indigo-700" name="ImgUrl" value="@Model.Movie.ImgUrl" />
         </div>
 
-        
+
         <!-- Actors Select -->
         <div>
             <label class="block text-sm text-gray-300 mb-1">Actors</label>
             <select id="actors-select" name="ActorId" class="bg-black text-white" multiple>
-                <option>Choose actors...</option>
-                @foreach (var item in Model.Actors)
+                <option disabled selected>Choose actors...</option>
+                @foreach (var item in Model.ActorMovies)
                 {
-                    <option value="@item.Id" data-image="/images/cast/@item.ProfilePicture" >
-                        @item.FirstName @item.LastName
-                    </option>
+                    if (item.MovieId == Model.Movie.Id)
+                    {
+                    <option value="@item.Actor.Id" data-image="/images/cast/@item.Actor.ProfilePicture" selected>
+                        @item.Actor.FirstName @item.Actor.LastName
+                        </option>
+
+                    }
+                    else
+                    {
+                        <option value="@item.Actor.Id" data-image="/images/cast/@item.Actor.ProfilePicture" >
+                            @item.Actor.FirstName @item.Actor.LastName
+                        </option>
+                    }
                 }
             </select>
         </div>
@@ -65,12 +75,12 @@
             <div>
                 <label class="block text-sm text-gray-300 mb-1">Start Date</label>
                 <input type="date"
-                       class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="StartDate"  />
+                       class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="StartDate" value="@Model.Movie.StartDate" />
             </div>
             <div>
                 <label class="block text-sm text-gray-300 mb-1">End Date</label>
                 <input type="date"
-                       class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="EndDate" />
+                       class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="EndDate" value="@Model.Movie.EndDate" />
             </div>
         </div>
 
@@ -89,10 +99,19 @@
             <label class="block text-sm text-gray-300 mb-1">Category</label>
             <select class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="CategoryId">
                 <option>Select Category</option>
-                @foreach(var item in Model.Categories)
+                @foreach (var item in Model.Categories)
                 {
-                <option value="@item.Id">@item.Name</option>
-                    
+                    if(item.Id== Model.Movie.CategoryId)
+                    {
+                        <option value="@item.Id" selected>@item.Name</option>
+
+                    }
+                    else
+                    {
+                        
+                    <option value="@item.Id">@item.Name</option>
+                    }
+
                 }
             </select>
         </div>
@@ -102,10 +121,19 @@
             <label class="block text-sm text-gray-300 mb-1">Cinema</label>
             <select class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="CinemaId">
                 <option>Select Cinema</option>
-                @foreach(var item in Model.Cinemas)
+                @foreach (var item in Model.Cinemas)
                 {
-                <option value="@item.Id">@item.Name</option>
-                    
+                    if (item.Id == Model.Movie.CinemaId)
+                    {
+                        <option value="@item.Id" selected>@item.Name</option>
+
+                    }
+                    else
+                    {
+
+                        <option value="@item.Id">@item.Name</option>
+                    }
+
                 }
             </select>
         </div>
@@ -114,7 +142,7 @@
         <div>
             <label class="block text-sm text-gray-300 mb-1">Trailer URL</label>
             <input type="url" placeholder="https://youtube.com/..."
-                   class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="TrailerUrl" "/>
+                   class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="TrailerUrl" value="@Model.Movie.TrailerUrl"/>
         </div>
 
         <!-- Submit -->
