@@ -16,6 +16,8 @@
             <input type="text" placeholder="Enter first name"
                    class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700
                        focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="FirstName" value="@Model.FirstName" />
+            <span class="text-danger" asp-validation-for="@Model.FirstName"></span>
+
         </div>
 
         <!-- Last Name -->
@@ -24,6 +26,8 @@
             <input type="text" placeholder="Enter last name"
                    class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700
                        focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="LastName" value="@Model.LastName" />
+            <span class="text-danger" asp-validation-for="@Model.LastName"></span>
+
         </div>
 
         <!-- Profile Picture Upload -->
@@ -35,6 +39,8 @@
                        file:text-sm file:font-semibold
                        file:bg-indigo-600 file:text-white
                        hover:file:bg-indigo-700" name="ProfilePicture" value="@Model.ProfilePicture" />
+            <span class="text-danger" asp-validation-for="@Model.ProfilePicture"></span>
+
         </div>
 
         <!-- Bio -->
@@ -43,6 +49,8 @@
             <input rows="3" placeholder="Enter short biography"
                       class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700
                        focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="Bio" value="@Model.Bio">
+            <span class="text-danger" asp-validation-for="@Model.Bio"></span>
+
         </div>
 
         <!-- News -->
@@ -51,6 +59,8 @@
             <input rows="2" placeholder="Enter latest news"
                       class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700
                        focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="News" value="@Model.News">
+            <span class="text-danger" asp-validation-for="@Model.News"></span>
+
         </div>
 
         <!-- Buttons -->

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace ETickets.Models
 {
@@ -7,8 +8,10 @@ namespace ETickets.Models
     public class ActorMovie
     {
         //public int Id { get; set; }
+        [Required]
         public int ActorId { get; set; }
         public Actor Actor { get; set; }
+        [Required]
         public int MovieId { get; set; }
         public Movie Movie { get; set; }
     }

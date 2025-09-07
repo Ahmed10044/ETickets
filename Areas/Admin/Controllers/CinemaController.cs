@@ -3,6 +3,7 @@ using ETickets.Models;
 using ETickets.Utility;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Mono.TextTemplating;
 
 namespace ETickets.Areas.Admin.Controllers
 {
@@ -19,16 +20,21 @@ namespace ETickets.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            return View(new Cinema());
         }
         [HttpPost]
         public IActionResult Create(Cinema cinema)
         {
+            if(!ModelState.IsValid)
+            {
+                return View(cinema);
+            }
             _context.Cinemas.Add(cinema);
             _context.SaveChanges();
+            TempData["Success-Notification"] = "Add Cinema Successfully";
             return RedirectToAction(nameof(Index));
         }
-
+        [HttpGet]
         public IActionResult Edit(int id)
         {
             var cinema = _context.Cinemas.FirstOrDefault(e => e.Id == id);
@@ -41,8 +47,14 @@ namespace ETickets.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Edit(Cinema cinema)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(cinema);
+            }
             _context.Cinemas.Update(cinema);
             _context.SaveChanges();
+            TempData["Success-Notification"] = "Edit Cinema Successfully";
+
             return RedirectToAction(nameof(Index));
         }
         public IActionResult Delete(int id)
@@ -54,6 +66,8 @@ namespace ETickets.Areas.Admin.Controllers
             }
             _context.Cinemas.Remove(Cinema);
             _context.SaveChanges();
+            TempData["Success-Notification"] = "Delete Cinema Successfully";
+
             return RedirectToAction(nameof(Index));
         }
     }

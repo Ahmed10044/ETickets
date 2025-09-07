@@ -18,14 +18,20 @@ namespace ETickets.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            var Actors=_context.Actors;
-            return View(Actors.ToList());
+            //var Actors=_context.Actors;
+            return View();
         }
         [HttpPost]
         public IActionResult Create(Actor actor)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(actor);
+            }
             _context.Actors.Add(actor);
             _context.SaveChanges();
+            TempData["Success-Notification"] = "Add Cinema Successfully";
+
             return RedirectToAction(nameof(Index));
         }
         [HttpGet]
@@ -41,8 +47,14 @@ namespace ETickets.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Edit(Actor actor)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(actor);
+            }
             _context.Actors.Update(actor);
             _context.SaveChanges();
+            TempData["Success-Notification"] = "Add Cinema Successfully";
+
             return RedirectToAction(nameof(Index));
         }
 
@@ -54,7 +66,9 @@ namespace ETickets.Areas.Admin.Controllers
                 return NotFound();
             }
             _context.Actors.Remove(Actor);
-            _context .SaveChanges();    
+            _context .SaveChanges();  
+            TempData["Success-Notification"] = "Add Cinema Successfully";
+
             return RedirectToAction(nameof(Index));
         }
 

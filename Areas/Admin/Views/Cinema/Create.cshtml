@@ -1,4 +1,7 @@
-﻿<div class="max-w-lg mx-auto bg-gray-800 shadow-lg rounded-2xl p-6 text-gray-100">
+﻿@model Cinema
+
+
+<div class="max-w-lg mx-auto bg-gray-800 shadow-lg rounded-2xl p-6 text-gray-100">
     <h3 class="text-2xl font-bold text-center text-indigo-400 mb-6">Create New Cinema</h3>
 
     <form method="post" class="space-y-4">
@@ -11,19 +14,23 @@
                    class="w-full rounded-xl bg-gray-700 border border-gray-600
                           focus:border-indigo-500 focus:ring-indigo-500 text-sm p-2
                           text-gray-100 placeholder-gray-400"
-                          name="Name" />
+                          name="Name" value="@Model.Name"/>
+                   <span class="text-danger" asp-validation-for="@Model.Name"></span>
+
         </div>
 
         <!-- Description -->
         <div>
             <label for="Description" class="block text-sm font-medium mb-1">Description</label>
-            <textarea id="Description"  rows="3" required
+            <input id="Description"  rows="3" required
                       placeholder="Enter cinema description"
                       class="w-full rounded-xl bg-gray-700 border border-gray-600
                              focus:border-indigo-500 focus:ring-indigo-500 text-sm p-2
                              text-gray-100 placeholder-gray-400"
-                              name="Description">
-            </textarea>
+                      name="Description" value="@Model.Description">
+            <span class="text-danger" asp-validation-for="@Model.Description"></span>
+
+            
         </div>
 
         <!-- Cinema Logo -->
@@ -33,8 +40,10 @@
                    placeholder="Enter cinema logo URL"
                    class="w-full rounded-xl bg-gray-700 border border-gray-600
                           focus:border-indigo-500 focus:ring-indigo-500 text-sm p-2
-                          text-gray-100 placeholder-gray-400" 
-                          name="CinemaLogo" />
+                          text-gray-100 placeholder-gray-400"
+                   name="CinemaLogo" value="@Model.CinemaLogo" />
+            <span class="text-danger" asp-validation-for="@Model.CinemaLogo"></span>
+
         </div>
 
         <!-- Address -->
@@ -44,7 +53,9 @@
                    placeholder="Enter cinema address"
                    class="w-full rounded-xl bg-gray-700 border border-gray-600
                           focus:border-indigo-500 focus:ring-indigo-500 text-sm p-2
-                          text-gray-100 placeholder-gray-400" name="Address" />
+                          text-gray-100 placeholder-gray-400" name="Address" value="@Model.Address" />
+            <span class="text-bg-danger" asp-validation-for="@Model.Address"></span>
+
         </div>
 
         <!-- Submit -->
@@ -58,3 +69,6 @@
 
     </form>
 </div>
+
+
+

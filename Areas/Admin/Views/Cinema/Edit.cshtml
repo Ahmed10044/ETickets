@@ -15,6 +15,8 @@
                           focus:border-indigo-500 focus:ring-indigo-500 text-sm p-2
                           text-gray-100 placeholder-gray-400"
                    name="Name" value="@Model.Name" />
+            <span class="text-danger" asp-validation-for="@Model.Name"></span>
+
         </div>
 
         <!-- Description -->
@@ -26,6 +28,8 @@
                      focus:border-indigo-500 focus:ring-indigo-500 text-sm p-2
                      text-gray-100 placeholder-gray-400"
                       name="Description">@Model.Description</textarea>
+            <span class="text-danger" asp-validation-for="@Model.Description"></span>
+
         </div>
 
 
@@ -38,6 +42,8 @@
                           focus:border-indigo-500 focus:ring-indigo-500 text-sm p-2
                           text-gray-100 placeholder-gray-400"
                    name="CinemaLogo" value="@Model.CinemaLogo" />
+            <span class="text-danger" asp-validation-for="@Model.CinemaLogo"></span>
+
         </div>
 
         <!-- Address -->
@@ -48,6 +54,8 @@
                    class="w-full rounded-xl bg-gray-700 border border-gray-600
                           focus:border-indigo-500 focus:ring-indigo-500 text-sm p-2
                           text-gray-100 placeholder-gray-400" name="Address" value="@Model.Address" />
+            <span class="text-danger" asp-validation-for="@Model.Address"></span>
+
         </div>
 
         <!-- Submit -->
@@ -61,3 +69,5 @@
 
     </form>
 </div>
+
+

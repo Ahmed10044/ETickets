@@ -22,11 +22,17 @@ namespace ETickets.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Create(Category category)
         {
+            if(!ModelState.IsValid)
+            {
+                return View(category);
+            }
             _context.Categories.Add(category);
             _context.SaveChanges();
+            TempData["Success-Notification"] = "Add Cinema Successfully";
+
             return RedirectToAction(nameof(Index));
         }
-
+        [HttpGet]
         public IActionResult Edit(int id)
         {
             var  Category = _context.Categories.FirstOrDefault(e =>e.Id == id);
@@ -39,8 +45,14 @@ namespace ETickets.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Edit(Category category)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(category);
+            }
             _context.Categories.Update(category);
             _context.SaveChanges();
+            TempData["Success-Notification"] = "Add Cinema Successfully";
+
             return RedirectToAction(nameof(Index));
         }
         public IActionResult Delete(int id)
@@ -52,6 +64,8 @@ namespace ETickets.Areas.Admin.Controllers
             }
             _context.Categories.Remove(Category);
             _context.SaveChanges();
+            TempData["Success-Notification"] = "Add Cinema Successfully";
+
             return RedirectToAction(nameof(Index));
         }
 

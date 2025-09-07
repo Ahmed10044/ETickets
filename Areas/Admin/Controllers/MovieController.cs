@@ -3,6 +3,7 @@ using ETickets.Models;
 using ETickets.Utility;
 using ETickets.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace ETickets.Areas.Admin.Controllers
@@ -34,34 +35,43 @@ namespace ETickets.Areas.Admin.Controllers
 
             var Movie = new CategoryAndCineamAndActorVM()
             {
+                movie=new Movie(),
                 Cinemas = Cinemas.ToList(),
                 Categories = Categories.ToList(),
                 Actors = Actors.ToList(),
+
             };
             return View(Movie);
         }
         [HttpPost]
-        public IActionResult Create(Movie movie,List<int> actorId)
+        public IActionResult Create(List<int> actorId , Movie movie)
         {
+            
             _context.Movies.Add(movie);
             _context.SaveChanges();
             foreach (var item in actorId)
             {
                
                _context.ActorMovies.Add(new ActorMovie
-                {
-                  MovieId = movie.Id,
+               {
+                  MovieId =movie.Id,
                   ActorId= item,
-                 });
+               });
             _context.SaveChanges();
 
             }
+            TempData["Success-Notification"] = "Add Cinema Successfully";
+
             return RedirectToAction(nameof(Index));
         }
         [HttpGet]
         public IActionResult Edit(int id)
         {
             var movie = _context.Movies.FirstOrDefault(e=>e.Id==id);
+            if (movie == null)
+            {
+                return NotFound(); // or redirect to Index with a message
+            }
             var Cinemas=_context.Cinemas;
             var Categories =_context.Categories;
             
@@ -82,6 +92,7 @@ namespace ETickets.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Edit(Movie movie, List<int> actorId)
         {
+            
             _context.Movies.Update(movie);
             _context.SaveChanges();
             foreach (var item in actorId)
@@ -95,6 +106,8 @@ namespace ETickets.Areas.Admin.Controllers
                 _context.SaveChanges();
 
             }
+            TempData["Success-Notification"] = "Add Cinema Successfully";
+
             return RedirectToAction(nameof(Index));
         }
 
@@ -114,6 +127,8 @@ namespace ETickets.Areas.Admin.Controllers
                 _context.ActorMovies.Remove(item);
                 _context.SaveChanges();
             }
+            TempData["Success-Notification"] = "Add Cinema Successfully";
+
             return RedirectToAction(nameof(Index));
         }
     }

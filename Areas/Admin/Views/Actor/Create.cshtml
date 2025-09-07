@@ -1,5 +1,5 @@
 ﻿
-@model List<Actor>
+@model Actor
 
 <!-- Actor Form -->
 <section id="actor-form" class="p-6 rounded-2xl bg-gray-900/70 shadow-xl max-w-2xl mx-auto">
@@ -16,6 +16,8 @@
             <input type="text" placeholder="Enter first name"
                    class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700
                        focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="FirstName" />
+            <span class="text-danger" asp-validation-for="@Model.FirstName"></span>
+
         </div>
 
         <!-- Last Name -->
@@ -24,6 +26,8 @@
             <input type="text" placeholder="Enter last name"
                    class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700
                        focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="LastName" />
+            <span class="text-danger" asp-validation-for="@Model.LastName"></span>
+
         </div>
 
         <!-- Profile Picture Upload -->
@@ -35,6 +39,8 @@
                        file:text-sm file:font-semibold
                        file:bg-indigo-600 file:text-white
                        hover:file:bg-indigo-700" name="ProfilePicture" />
+            <span class="text-danger" asp-validation-for="@Model.ProfilePicture"></span>
+
         </div>
 
         <!-- Bio -->
@@ -43,6 +49,8 @@
             <textarea rows="3" placeholder="Enter short biography"
                       class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700
                        focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="Bio"></textarea>
+            <span class="text-danger" asp-validation-for="@Model.Bio"></span>
+
         </div>
 
         <!-- News -->
@@ -51,6 +59,8 @@
             <textarea rows="2" placeholder="Enter latest news"
                       class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700
                        focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="News"></textarea>
+            <span class="text-danger" asp-validation-for="@Model.News"></span>
+
         </div>
 
         <!-- Buttons -->

@@ -10,44 +10,51 @@
     </div>
 
     <!-- Form -->
-    <form method="post" class="space-y-5">
+    <form asp-action="Create" method="post" class="space-y-5">
         <!-- Title -->
         <div>
             <label class="block text-sm text-gray-300 mb-1">Title</label>
-            <input type="text" placeholder="Enter movie title"
+            <input type="text" placeholder="Enter movie title" asp-for="movie.Name"
                    class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="Name" />
+            @* <span asp-validation-for="movie.Name" class="text-danger"></span> *@
         </div>
 
         <!-- Description -->
         <div>
             <label class="block text-sm text-gray-300 mb-1">Description</label>
-            <textarea rows="3" placeholder="Enter description"
+            <textarea rows="3" placeholder="Enter description" asp-for="movie.Description"
                       class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="Description"></textarea>
+             @* <span class="text-danger" asp-validation-for="movie.Description"></span>  *@
+
         </div>
 
         <!-- Price -->
         <div>
             <label class="block text-sm text-gray-300 mb-1">Price</label>
-            <input type="number" placeholder="Enter price"
-                   class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="Price"/>
+            <input type="number" placeholder="Enter price" asp-for="movie.Price"
+                   class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="Price" />
+             @* <span class="text-danger" asp-validation-for="movie.Price"></span>  *@
+
         </div>
 
         <!-- Poster Upload -->
         <div>
             <label class="block text-sm text-gray-300 mb-1">Poster</label>
-            <input type="text"
+            <input     type="file" asp-for="movie.ImgUrl"
                    class="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4
                        file:rounded-lg file:border-0
                        file:text-sm file:font-semibold
                        file:bg-indigo-600 file:text-white
                        hover:file:bg-indigo-700" name="ImgUrl" />
+             @* <span class="text-danger" asp-validation-for="movie.ImgUrl"></span> *@
+
         </div>
 
         
         <!-- Actors Select -->
         <div>
             <label class="block text-sm text-gray-300 mb-1">Actors</label>
-            <select id="actors-select" name="ActorId" class="bg-black text-white" multiple>
+             <select id="actors-select" name="ActorId" class="bg-black text-white" multiple>
                 <option>Choose actors...</option>
                 @foreach (var item in Model.Actors)
                 {
@@ -55,7 +62,12 @@
                         @item.FirstName @item.LastName
                     </option>
                 }
-            </select>
+            </select> 
+             @* <span class="text-danger" asp-validation-for="ActorMovie.ActorId"></span>   *@
+            @* <select class="bg-black text-white"  asp-for="Actors" asp-items="@Model.Actors" multiple>
+
+            </select> *@
+
         </div>
 
 
@@ -64,57 +76,81 @@
         <div class="grid grid-cols-2 gap-4">
             <div>
                 <label class="block text-sm text-gray-300 mb-1">Start Date</label>
-                <input type="date"
-                       class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="StartDate"  />
+                <input type="date"   asp-for="movie.StartDate"  
+                       class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="StartDate" />
+                 @* <span class="text-danger" asp-validation-for="movie.StartDate"></span>  *@
+
             </div>
             <div>
                 <label class="block text-sm text-gray-300 mb-1">End Date</label>
-                <input type="date"
+                <input type="date" asp-for="movie.EndDate"
                        class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="EndDate" />
+                 @* <span class="text-danger" asp-validation-for="movie.EndDate"></span>  *@
+
             </div>
         </div>
 
         <!-- Status -->
         <div>
             <label class="block text-sm text-gray-300 mb-1">Status</label>
-            <select class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="Status">
-                <option value=0>Upcoming</option>
-                <option value=1>Available</option>
-                <option value=2>Expired</option>
-            </select>
+            <select class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" asp-for="movie.MovieStatus" name="MovieStatus">
+                <option value="0">Upcoming</option>
+                <option value="1">Available</option>
+                <option value="2">Expired</option>
+            </select> 
+             @* <span class="text-danger" asp-validation-for="movie.MovieStatus"></span>  *@
+            @* <select class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50"
+                 asp-for="movie.MovieStatus" asp-items="@"></select> *@
+
+
         </div>
 
         <!-- Category -->
         <div>
             <label class="block text-sm text-gray-300 mb-1">Category</label>
-            <select class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="CategoryId">
+             <select class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="CategoryId">
                 <option>Select Category</option>
                 @foreach(var item in Model.Categories)
                 {
                 <option value="@item.Id">@item.Name</option>
                     
                 }
-            </select>
+            </select> 
+             @* <span class="text-danger" asp-validation-for="movie.CategoryId"></span>  *@
+            @* <select class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50"
+                     asp-for="movie.CategoryId"   asp-items="@Model.Categories"> *@
+
+             @* </select> *@
+
+
         </div>
 
         <!-- Cinema -->
         <div>
             <label class="block text-sm text-gray-300 mb-1">Cinema</label>
-            <select class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="CinemaId">
+              <select class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="CinemaId">
                 <option>Select Cinema</option>
                 @foreach(var item in Model.Cinemas)
                 {
                 <option value="@item.Id">@item.Name</option>
                     
                 }
-            </select>
+            </select>  
+             @* <span class="text-danger" asp-validation-for="movie.CinemaId"></span>  *@
+            @* <select class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50"
+                    asp-for="movie.CinemaId"   asp-items="@Model.Cinemas" >
+
+            </select> *@
+
         </div>
 
         <!-- Trailer -->
         <div>
             <label class="block text-sm text-gray-300 mb-1">Trailer URL</label>
-            <input type="url" placeholder="https://youtube.com/..."
-                   class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="TrailerUrl" "/>
+            <input type="url" placeholder="https://youtube.com/..." asp-for="movie.TrailerUrl"
+                   class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-indigo-500 focus:ring focus:ring-indigo-500/50" name="TrailerUrl" />
+            @* <span class="text-danger" asp-validation-for="movie.TrailerUrl"></span>  *@
+
         </div>
 
         <!-- Submit -->
@@ -130,3 +166,7 @@
         </div>
     </form>
 </section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial">
+}
