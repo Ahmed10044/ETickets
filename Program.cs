@@ -1,3 +1,9 @@
+using ETickets.DataAccess;
+using ETickets.IRepositories.IRepositories;
+using ETickets.Models;
+using ETickets.Repositories;
+using Microsoft.EntityFrameworkCore;
+
 namespace ETickets
 {
     public class Program
@@ -5,9 +11,15 @@ namespace ETickets
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            //builder.Services.AddDbContext<ApplictionDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("UserDatabase")));
+            //builder.Services.AddScoped(typeof(Repository<>), typeof(Repository<>));
+
+            //builder.Services.AddScoped<IRepository<Cinema>, Repository<Cinema>>();
 
             var app = builder.Build();
 

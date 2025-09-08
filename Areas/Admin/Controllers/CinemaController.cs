@@ -1,4 +1,5 @@
 ﻿using ETickets.DataAccess;
+using ETickets.IRepositories.IRepositories;
 using ETickets.Models;
 using ETickets.Repositories;
 using ETickets.Utility;
@@ -13,6 +14,11 @@ namespace ETickets.Areas.Admin.Controllers
     public class CinemaController : Controller
     {
         private  Repository<Cinema> _cinemaRepo;
+
+        //public CinemaController(IRepository<Cinema> cinemaRepo)
+        //{
+        //    _cinemaRepo = cinemaRepo;
+        //}
 
         public async Task<IActionResult> Index()
         {

@@ -1,13 +1,14 @@
 ﻿using ETickets.DataAccess;
+using ETickets.IRepositories.IRepositories;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace ETickets.Repositories
 {
-    public class Repository<T>where T : class
+    public class Repository<T>  where T : class
     {
 
-        private ApplictionDbContext _context ;
+        private ApplictionDbContext _context=new() ;
         private DbSet<T> _db;
 
         public Repository(ApplictionDbContext context)
@@ -16,7 +17,7 @@ namespace ETickets.Repositories
             _db = _context.Set<T>();
         }
 
-       
+
 
 
 
