@@ -5,17 +5,19 @@ using System.Linq.Expressions;
 
 namespace ETickets.Repositories
 {
-    public class Repository<T>  where T : class
+    public class Repository<T> : IRepository<T>  where T : class
     {
 
         private ApplictionDbContext _context=new() ;
         private DbSet<T> _db;
 
-        public Repository(ApplictionDbContext context)
+        public Repository()
         {
-            _context = context;
+            //_context = context;
             _db = _context.Set<T>();
         }
+
+        
 
 
 

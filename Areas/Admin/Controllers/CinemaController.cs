@@ -13,17 +13,17 @@ namespace ETickets.Areas.Admin.Controllers
     [ Area(SD.AdminArea)]
     public class CinemaController : Controller
     {
-        private  Repository<Cinema> _cinemaRepo;
 
-        //public CinemaController(IRepository<Cinema> cinemaRepo)
-        //{
-        //    _cinemaRepo = cinemaRepo;
-        //}
+        private IRepository<Cinema> _cinemaRepo ;
+        public CinemaController(IRepository<Cinema> cinemaRepo)
+        {
+            _cinemaRepo = cinemaRepo;
+        }
 
         public async Task<IActionResult> Index()
         {
             var Cinemas=await _cinemaRepo.GetAsync();
-            return View(Cinemas.ToList());
+            return View( Cinemas.ToList());
         }
         [HttpGet]
         public IActionResult Create()

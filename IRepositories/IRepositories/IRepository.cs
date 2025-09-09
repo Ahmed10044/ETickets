@@ -19,5 +19,5 @@ namespace ETickets.IRepositories.IRepositories
 
         Task<T?> GetOneAsync(Expression<Func<T, bool>>? expression = null,
             Expression<Func<T, object>>[]? includes = null, bool tracked = true);
-    }
+    } 
 }

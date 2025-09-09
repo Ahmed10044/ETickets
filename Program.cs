@@ -19,7 +19,7 @@ namespace ETickets
             //builder.Services.AddDbContext<ApplictionDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("UserDatabase")));
             //builder.Services.AddScoped(typeof(Repository<>), typeof(Repository<>));
 
-            //builder.Services.AddScoped<IRepository<Cinema>, Repository<Cinema>>();
+            builder.Services.AddScoped<IRepository<Cinema>, Repository<Cinema>>();
 
             var app = builder.Build();
 
